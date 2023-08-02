@@ -4,12 +4,13 @@ FROM node:alpine
 
 #to copy from CWD of our local to docker
 WORKDIR /usr/app
-COPY ./ /usr/app
+COPY ./package.json /usr/app
 
 #if we have just this we need package.json
 #but docker will not know where the package.json is
 #because it is not present in the above image, which is also the environment where put
 #app will be running, so we use the above
 RUN npm install
+COPY ./ /usr/app/
 
 CMD ["npm", "start"]
